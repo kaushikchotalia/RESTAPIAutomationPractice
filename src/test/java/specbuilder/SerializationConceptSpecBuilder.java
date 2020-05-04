@@ -1,14 +1,19 @@
-package serialization;
+package specbuilder;
+
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import serialization.AddPlace;
+import serialization.Location;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.post;
 
-public class SerializationConcept {
+public class SerializationConceptSpecBuilder {
     public static void main(String[] args) {
         AddPlace p = new AddPlace();
         p.setAccuracy(60);
@@ -28,13 +33,16 @@ public class SerializationConcept {
         l.setLng(33.427362);
         p.setLocation(l);
 
-        RestAssured.baseURI = "https://rahulshettyacademy.com";
-        Response res = given().log().all().queryParam("key","qaclick123")
-                .body(p)
-                .when().post("/maps/api/place/add/json")
+        RequestSpecification req = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com").addQueryParam("key","qaclick123")
+                .setContentType(ContentType.JSON).build();
+
+        RequestSpecification res = given().spec(req)
+                .body(p);
+
+           Response response = res.when().post("/maps/api/place/add/json")
                 .then().assertThat().statusCode(200).extract().response();
 
-        String responseString = res.asString();
+        String responseString = response.asString();
         System.out.println(responseString);
 
     }

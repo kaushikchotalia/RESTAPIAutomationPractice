@@ -1,16 +1,9 @@
-package serialization;
+package specbuilder;
 
 import java.util.List;
 
 public class AddPlace {
     private int accuracy;
-    private String name;
-    private String phone_number;
-    private String address;
-    private String website;
-    private String language;
-    private Location location;
-    private List<String> type;
 
     public int getAccuracy() {
         return accuracy;
@@ -29,11 +22,11 @@ public class AddPlace {
     }
 
     public String getPhoneNumber() {
-        return phone_number;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phone_number = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {
@@ -68,14 +61,20 @@ public class AddPlace {
         this.location = location;
     }
 
-    public List<String> getTypes() {
+    public List<String> getType() {
         return type;
     }
 
-    public void setTypes(List<String> type) {
+    public void setType(List<String> type) {
         this.type = type;
     }
 
-
+    private String name;
+    private String phoneNumber;
+    private String address;
+    private String website;
+    private String language;
+    private Location location;
+    private List<String> type;
 
 }

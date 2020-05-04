@@ -1,8 +1,7 @@
-package serialization;
+package specbuilder;
 
 public class Location {
     private double lat;
-    private double lng;
 
     public double getLat() {
         return lat;
@@ -20,5 +19,5 @@ public class Location {
         this.lng = lng;
     }
 
-
+    private double lng;
 }
